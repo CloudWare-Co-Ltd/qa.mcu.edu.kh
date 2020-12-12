@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  wp-qa-mcu-edu-kh:
+    image: wordpress
+    restart: always
+    ports:
+      - 1004:80
+    environment:
+      WORDPRESS_DB_HOST: db-qa-mcu-edu-kh
+      WORDPRESS_DB_USER: qa-mcu-edu-kh
+      WORDPRESS_DB_PASSWORD: xPsGGlr0G5UprHyo
+      WORDPRESS_DB_NAME: qa-mcu-edu-kh
+    volumes:
+      - wp-qa-mcu-edu-kh:/var/www/html
+      - ./upload.ini:/usr/local/etc/php/conf.d/uploads.ini
+  db-qa-mcu-edu-kh:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: qa-mcu-edu-kh
+      MYSQL_USER: qa-mcu-edu-kh
+      MYSQL_PASSWORD: xPsGGlr0G5UprHyo
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db-qa-mcu-edu-kh:/var/lib/mysql
+volumes:
+  wp-qa-mcu-edu-kh:
+  db-qa-mcu-edu-kh:
